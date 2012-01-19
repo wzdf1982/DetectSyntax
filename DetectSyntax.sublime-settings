@@ -1,0 +1,96 @@
+// rules is a list (array) of checks that you want to make against the file in the current view.
+// A rule is either a regular expression or a function. If using a regular expression, you can specify whether you
+// want it tested against the file_name or the first line of the file (think shebangs and xml files). If the rule
+// is a function, you must provide the path to the file containing the function and the name of the function to call.
+// When this function is called, the file_name will be passed to it as the only argument. You are free to do whatever
+// you want in your function, just return True or False.
+//
+// If the syntax name is same as the directory name it is in, there is no need to specify both. For example, if the tmLanguage
+// file is Packages/XML/XML.tmLanguage, you need only supply XML. The plugin will figure it out. If, however, the tmLanguage
+// file is different, such as Rails/Ruby Haml, then you need to specify both. The plugin is capable of supporting multiple
+// levels of nesting if you need it to. For example, if you had all of your tmLanguage files for Rails organized like
+//
+// Packages/Rails/Language/*.tmLanguage
+//
+// you would define the syntax to be Rails/Language/Ruby Haml or whatever. Maybe a simpler way of saying it is this: if the plugin
+// finds a path separator in the syntax name, it will take the last piece and use it for the name of the tmLanguage file. Everything
+// else will be a path.
+//
+// The rules are processed until the first True result, so order your rules in a way that makes sense to you. These are
+// the syntax definitions that I use. See below for comments.
+
+{
+	"syntaxes": [
+		{
+			// I put XML first because of files like *.tmLanguage. It is unlikely that this rule will result in a
+			// false positive, meaning if it matches, you probably want the XML syntax
+			"name": "XML",
+			"rules": [
+				{"file_name": ".*\\.xml$"},
+				{"first_line": "^<\\?xml"}
+			]
+		},
+		{
+			// The Cucumber and RSpec rules come before Rails and Ruby because they end in .rb and will be
+			// identified as Rails or Ruby otherwise.
+			"name": "Cucumber/Cucumber Steps",
+			"rules": [
+				{"file_name": ".*steps\\.rb$"}
+			]
+		},
+		{
+			// One could use just the second rule to match every ruby file in a /spec/ directory, but again,
+			// I prefer to more explicit.
+			"name": "RSpec",
+			"rules": [
+				{"file_name": ".*spec\\.rb$"},
+				{"file_name": ".*\/spec\/.*\\.rb$"}
+			]
+		},
+		{
+			// This rule could be incorporated into the next one, but I prefer to be more explicit rather than less
+			"name": "Rails/Ruby Haml",
+			"rules": [
+				{"file_name": ".*\\.haml$"}
+			]
+		},
+		{
+			// this is an example of using a custom function to decide whether or not to apply this syntax.
+			// source can be an absolute path or relative. If relative, the plugin will look in Packages/User first
+			// and then the plugin directory. The one used here comes with the plugin. Any you write should be
+			// placed in Packages/User. Since no attempt is made to parse "source", you should be able to create
+			// a subdirectory under Packages/User, such as Packages/User/DetectSyntax, for any custom functions you
+			// create.
+			"name": "Rails/Ruby on Rails",
+			"rules": [
+				{"function": {"name": "is_rails_file", "source": "is_rails_file.py"}}
+			]
+		},
+		{
+			"name": "Ruby",
+			"rules": [
+				{"file_name": ".*\\.rb$"},
+				{"first_line": "^#\\!(?:.+)ruby"}
+			]
+		},
+		{
+			"name": "PHP",
+			"rules": [
+				{"file_name": ".*\\.(php|inc)$"},
+				{"first_line": "^<\\?php"}
+			]
+		},
+		{
+			"name": "PHP/Smarty",
+			"rules": [
+				{"file_name": ".*\\.tpl$"}
+			]
+		},
+		{
+			"name": "Apache",
+			"rules": [
+				{"file_name": "^(.htaccess|.htgroups|.htpasswd|httpd.conf)$"}
+			]
+		}
+	]
+}
