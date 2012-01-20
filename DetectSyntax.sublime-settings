@@ -5,6 +5,9 @@
 // When this function is called, the file_name will be passed to it as the only argument. You are free to do whatever
 // you want in your function, just return True or False.
 //
+// NOTE: file_name is the full, absolute path of the file. file_name is not altered in any way after it is retrieved
+// from ST2, so pay attention to case when constructing regular expressions.
+//
 // If the syntax name is same as the directory name it is in, there is no need to specify both. For example, if the tmLanguage
 // file is Packages/XML/XML.tmLanguage, you need only supply XML. The plugin will figure it out. If, however, the tmLanguage
 // file is different, such as Rails/Ruby Haml, then you need to specify both. The plugin is capable of supporting multiple
