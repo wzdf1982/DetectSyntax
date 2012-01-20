@@ -11,7 +11,7 @@ Installation
 
 DetectSyntax can be installed in a variety of ways:
 
-* Through Package Control [http://wbond.net/sublime_packages/package_control] (http://wbond.net/sublime_packages/package_control)
+* COMING SOON: Through Package Control [http://wbond.net/sublime_packages/package_control] (http://wbond.net/sublime_packages/package_control)
 * By cloning this repository in Packages
 * By downloading the files and placing them into a directory under Packages, such as DetectSyntax or User.
 
