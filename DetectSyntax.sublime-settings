@@ -20,7 +20,8 @@
 // else will be a path.
 //
 // The rules are processed until the first True result, so order your rules in a way that makes sense to you. These are
-// the syntax definitions that I use. See below for comments.
+// the syntax definitions that I use. See below for comments. Also note that some of the rules may not be necessary as ST2 does
+// identify files well, but I leave them here as examples.
 
 {
 	"syntaxes": [
@@ -58,12 +59,23 @@
 			]
 		},
 		{
-			// this is an example of using a custom function to decide whether or not to apply this syntax.
+			// This is an example of using a custom function to decide whether or not to apply this syntax.
 			// source can be an absolute path or relative. If relative, the plugin will look in Packages/User first
 			// and then the plugin directory. The one used here comes with the plugin. Any you write should be
 			// placed in Packages/User. Since no attempt is made to parse "source", you should be able to create
 			// a subdirectory under Packages/User, such as Packages/User/DetectSyntax, for any custom functions you
 			// create.
+			//
+			// If the name of the source file is the same as the name of the function *and* it is located in either
+			// Packages/User or Packages/DetectSyntax, you don't need to specify "source" in the rule. The plugin
+			// will append '.py' to the name if "source" is empty. So
+			//
+			//   {"function": {"name": "is_rails_file"}}
+			//
+			// will have the same affect as
+			//
+			//   {"function": {"name": "is_rails_file", "source": "is_rails_file.py"}}
+			//
 			"name": "Rails/Ruby on Rails",
 			"rules": [
 				{"function": {"name": "is_rails_file", "source": "is_rails_file.py"}}

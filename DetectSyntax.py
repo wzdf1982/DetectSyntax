@@ -86,6 +86,9 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 		path_to_file = function.get("source")
 		function_name = function.get("name")
 
+		if not path_to_file:
+			path_to_file = function_name + '.py'
+
 		# is path_to_file absolute?
 		if not os.path.isabs(path_to_file):
 			# it's not, so look in Packages/User
