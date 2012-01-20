@@ -103,7 +103,7 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 		# exceptions bubble up so the end user will know something happened
 		# in their function. So if the file doesn't exist, boom! If there is
 		# an error in the code in the file, boom! If something else bombs
-		# when calling the function (or the use provides the wrong function name),
+		# when calling the function (or the user provides the wrong function name),
 		# boom! Either way, the user will get valuable feedback.
 
 		with open(path_to_file, 'r') as the_file:
