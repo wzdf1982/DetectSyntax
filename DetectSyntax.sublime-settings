@@ -24,6 +24,10 @@
 // identify files well, but I leave them here as examples.
 
 {
+	// if an exception occurs when processing a function, should it be reraised so the user gets feedback? This is really
+	// only useful to those writing functions. The average user just wants the plugin to work, so let's not reraise the
+	// exception
+	"reraise_exceptions": false,
 	"syntaxes": [
 		{
 			// I put XML first because of files like *.tmLanguage. It is unlikely that this rule will result in a
@@ -78,7 +82,7 @@
 			//
 			"name": "Rails/Ruby on Rails",
 			"rules": [
-				{"function": {"name": "is_rails_file", "source": "is_rails_file.py"}}
+				{"function": {"name": "is_rails_file"}}
 			]
 		},
 		{

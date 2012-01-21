@@ -7,10 +7,11 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 		self.first_line = None
 		self.file_name = None
 		self.view = None
-		self.syntaxes = None
+		self.syntaxes = []
 		self.plugin_name = 'DetectSyntax'
 		self.plugin_dir = sublime.packages_path() + os.path.sep + self.plugin_name
 		self.user_dir = sublime.packages_path() + os.path.sep + 'User'
+		self.reraise_exceptions = False
 
 
 	def on_load(self, view):
@@ -27,6 +28,10 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 
 		self.reset_cache_variables(view)
 		self.load_syntaxes()
+		
+		if not self.syntaxes:
+			return
+
 		for syntax in self.syntaxes:
 			# stop on the first syntax that matches
 			if self.syntax_matches(syntax):
@@ -39,6 +44,7 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 		self.file_name = view.file_name()
 		self.first_line = view.substr(view.line(0))
 		self.syntaxes = []
+		self.reraise_exceptions = False
 
 
 	def set_syntax(self, syntax):
@@ -61,6 +67,7 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 
 	def load_syntaxes(self):
 		settings = sublime.load_settings(self.plugin_name + '.sublime-settings')
+		self.reraise_exceptions = settings.get("reraise_exceptions")
 		self.syntaxes = settings.get("syntaxes")
 
 
@@ -98,19 +105,31 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 				# now look in the plugin's directory
 				path_to_file = self.plugin_dir + os.path.sep + path_to_file
 
-		# I originally had error handling in here that would just return
-		# False, but I decided to take it out in favor of letting the
-		# exceptions bubble up so the end user will know something happened
-		# in their function. So if the file doesn't exist, boom! If there is
-		# an error in the code in the file, boom! If something else bombs
-		# when calling the function (or the user provides the wrong function name),
-		# boom! Either way, the user will get valuable feedback.
+		# bubble exceptions up only if the user wants them
+		try:
+			with open(path_to_file, 'r') as the_file:
+				function_source = the_file.read()
+		except:
+			if self.reraise_exceptions:
+				raise
+			else:
+				return False
 
-		with open(path_to_file, 'r') as the_file:
-			function_source = the_file.read()
+		try:
+			exec(function_source)
+		except:
+			if self.reraise_exceptions:
+				raise
+			else:
+				return False
 
-		exec(function_source)
-		return eval(function_name + '(\'' + self.file_name + '\')')
+		try:
+			return eval(function_name + '(\'' + self.file_name + '\')')
+		except:
+			if self.reraise_exceptions:
+				raise
+			else:
+				return False
 
 
 	def regexp_matches(self, rule):
