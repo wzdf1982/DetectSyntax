@@ -15,7 +15,7 @@ DetectSyntax can be installed in a variety of ways:
 
 	Open Package Control  
 	Select 'Install Package'  
-	Find and select 'DetectSytax'
+	Find and select 'DetectSyntax'
 
 * By cloning this repository in Packages
 
