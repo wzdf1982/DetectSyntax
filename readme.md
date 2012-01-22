@@ -13,7 +13,13 @@ DetectSyntax can be installed in a variety of ways:
 
 * COMING SOON: Through Package Control [http://wbond.net/sublime_packages/package_control] (http://wbond.net/sublime_packages/package_control)
 * By cloning this repository in Packages
-* By downloading the files and placing them into a directory under Packages, such as DetectSyntax or User.
+
+		cd into your Packages folder  
+		git clone git://github.com/phillipkoebbe/DetectSyntax.git .
+
+* By downloading the files and placing them in a directory under Packages, such as DetectSyntax or User
+
+	If you don't put the files in Packages/User (you *can*, but probably shouldn't), make sure they live in Packages/DetectSyntax. If you download and extract a compressed archive from Git, the directory will be `phillipkoebbe-DetectSyntax`. Remove `phillipkoebbe-`.
 
 Usage
 -----
