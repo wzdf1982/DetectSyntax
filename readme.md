@@ -16,7 +16,7 @@ DetectSyntax can be installed in a variety of ways:
 	Open Package Control  
 	Select 'Install Package'  
 	Find and select 'DetectSytax'
-	
+
 * By cloning this repository in Packages
 
 		cd into your Packages folder  
@@ -24,7 +24,7 @@ DetectSyntax can be installed in a variety of ways:
 
 * By downloading the files and placing them in a directory under Packages, such as DetectSyntax or User
 
-	If you don't put the files in Packages/User (you *can*, but probably shouldn't), make sure they live in Packages/DetectSyntax. If you download and extract a compressed archive from Git, the directory will be `phillipkoebbe-DetectSyntax`. Remove `phillipkoebbe-`.
+	If you don't put the files in Packages/User (you *can*, but probably shouldn't), make sure they live in Packages/DetectSyntax. If you download and extract a compressed archive from GitHub, the directory will be `phillipkoebbe-DetectSyntax`. Remove `phillipkoebbe-`.
 
 Usage
 -----
