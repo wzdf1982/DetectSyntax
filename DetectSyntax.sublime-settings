@@ -19,6 +19,10 @@
 // finds a path separator in the syntax name, it will take the last piece and use it for the name of the tmLanguage file. Everything
 // else will be a path.
 //
+// NOTE: You can define the syntaxes using the path separator for your platform or a forward slash (/). If your path separator is a
+// backslash (\), you will need to escape it with another one, as in \\. Either way, when the name is parsed to build the syntax file
+// name, the path separator for your platform will be used.
+//
 // The rules are processed until the first True result, so order your rules in a way that makes sense to you. These are
 // the syntax definitions that I use. See below for comments. Also note that some of the rules may not be necessary as ST2 does
 // identify files well, but I leave them here as examples.

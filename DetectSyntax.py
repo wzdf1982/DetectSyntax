@@ -53,6 +53,14 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 	def set_syntax(self, syntax):
 		name = syntax.get("name")
 
+		# the default settings file uses / to separate the syntax name parts, but if the user
+		# is on windows, that might not work right. And if the user happens to be on Mac/Linux but
+		# is using rules that were written on windows, the same thing will happen. So let's
+		# be intelligent about this and replace / and \ with os.path.sep to get to
+		# a reasonable starting point
+		name = name.replace('/', os.path.sep)
+		name = name.replace('\\', os.path.sep)
+
 		dirs = name.split(os.path.sep)
 		name = dirs.pop()
 		path = os.path.sep.join(dirs)
