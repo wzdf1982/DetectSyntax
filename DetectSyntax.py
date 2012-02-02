@@ -68,7 +68,7 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 		if not path:
 			path = name
 	 
-		new_syntax = 'Packages' + os.path.sep + path + os.path.sep + name + '.tmLanguage'
+		new_syntax = 'Packages/' + path + '/' + name + '.tmLanguage'
 		current_syntax = self.view.settings().get('syntax')
 
 		# only set the syntax if it's different
