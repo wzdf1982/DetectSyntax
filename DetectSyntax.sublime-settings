@@ -51,8 +51,7 @@
 			]
 		},
 		{
-			// One could use just the second rule to match every ruby file in a /spec/ directory, but again,
-			// I prefer to more explicit.
+			// One could use just the second rule to match every ruby file in a /spec/ directory, but I prefer to more explicit.
 			"name": "RSpec",
 			"rules": [
 				{"file_name": ".*spec\\.rb$"},
@@ -110,9 +109,11 @@
 			]
 		},
 		{
+			// This doesn't really need to be here as ST2 identifies Apache files correctly, but I leave it
+			// for instructional value
 			"name": "Apache",
 			"rules": [
-				{"file_name": "^(.htaccess|.htgroups|.htpasswd|httpd.conf)$"}
+				{"file_name": "^.*(\\.htaccess|\\.htgroups|\\.htpasswd|httpd\\.conf)$"}
 			]
 		}
 	]
