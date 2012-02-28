@@ -91,6 +91,14 @@
 		{
 			"name": "Ruby",
 			"rules": [
+				{"file_name": ".*\\Gemfile$"},
+				{"file_name": ".*\\Capfile$"},
+				{"file_name": ".*\\Guardfile$"},
+				{"file_name": ".*\\[Rr]akefile$"},
+				{"file_name": ".*\\Vagrantfile$"},
+				{"file_name": ".*\\Thorfile$"},
+				{"file_name": ".*\\config.ru$"},
+				{"file_name": ".*\\.rake$"},
 				{"file_name": ".*\\.rb$"},
 				{"first_line": "^#\\!(?:.+)ruby"}
 			]
