@@ -67,13 +67,21 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 
 		if not path:
 			path = name
-	 
-		new_syntax = 'Packages/' + path + '/' + name + '.tmLanguage'
+
+		file_name = name + '.tmLanguage'
+		new_syntax = 'Packages/' + path + '/' + file_name
+		new_syntax_path = os.path.sep.join([sublime.packages_path(), path, file_name])
+
 		current_syntax = self.view.settings().get('syntax')
 
 		# only set the syntax if it's different
 		if new_syntax != current_syntax:
-			self.view.set_syntax_file(new_syntax)
+			# let's make sure it exists first!
+			if os.path.exists(new_syntax_path):
+				self.view.set_syntax_file(new_syntax)
+				print 'Syntax set to ' + name + ' using ' + new_syntax_path
+			else:
+				print 'Syntax file for ' + name + ' does not exist at ' + new_syntax_path
 
 
 	def load_syntaxes(self):
