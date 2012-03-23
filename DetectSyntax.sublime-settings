@@ -100,7 +100,16 @@
 				{"file_name": ".*\\config.ru$"},
 				{"file_name": ".*\\.rake$"},
 				{"file_name": ".*\\.rb$"},
-				{"first_line": "^#\\!(?:.+)ruby"}
+				// a binary rule does the same thing as a first_line rule that uses a regexp to match a shebang, the
+				// difference being DetectSyntax will construct the regexp and the user doesn't have to. So
+				//
+				// 		{"binary": "ruby"}
+				//
+				// is functionally equivalent to
+				//
+				//		{"first_line": "^#\\!(?:.+)ruby"}
+				//
+				{"binary": "ruby"}
 			]
 		},
 		{

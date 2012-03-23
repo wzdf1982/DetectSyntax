@@ -51,6 +51,10 @@ It all started by forking the plugin created by JeanMertz (1). I modified it qui
 
 History
 -------
+2012-03-23
+
+* Added rule type of 'binary' which builds a shebang regexp for the user.
+
 2012-03-22
 
 * Check to make sure the syntax file exists before trying to set it. [Closes #3, thanks tito]

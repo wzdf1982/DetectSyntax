@@ -155,6 +155,9 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 		if "first_line" in rule:
 			subject = self.first_line
 			regexp = rule.get("first_line")
+		elif "binary" in rule:
+			subject = self.first_line
+			regexp = '^#\\!(?:.+)' + rule.get("binary")
 		elif "file_name" in rule:
 			subject = self.file_name
 			regexp = rule.get("file_name")
