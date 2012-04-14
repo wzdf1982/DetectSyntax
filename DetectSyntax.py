@@ -87,7 +87,16 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 	def load_syntaxes(self):
 		settings = sublime.load_settings(self.plugin_name + '.sublime-settings')
 		self.reraise_exceptions = settings.get("reraise_exceptions")
-		self.syntaxes = settings.get("syntaxes")
+		# load the default syntaxes
+		default_syntaxes = settings.get("default_syntaxes")
+		if default_syntaxes is None:
+			default_syntaxes = []
+		# load any user-defined syntaxes
+		user_syntaxes = settings.get("syntaxes")
+		if user_syntaxes is None:
+			user_syntaxes = []
+		
+		self.syntaxes = default_syntaxes + user_syntaxes
 
 
 	def syntax_matches(self, syntax):

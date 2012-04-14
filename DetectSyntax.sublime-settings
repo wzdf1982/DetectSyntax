@@ -32,7 +32,7 @@
 	// only useful to those writing functions. The average user just wants the plugin to work, so let's not reraise the
 	// exception
 	"reraise_exceptions": false,
-	"syntaxes": [
+	"default_syntaxes": [
 		{
 			// I put XML first because of files like *.tmLanguage. It is unlikely that this rule will result in a
 			// false positive, meaning if it matches, you probably want the XML syntax
