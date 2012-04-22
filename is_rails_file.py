@@ -21,12 +21,12 @@ def is_rails_file(file_name):
 	# the existence of config/routes.rb. If it's found, the assumption is made that it's
 	# a Rails app.
 	while path != '':
-		if os.path.exists(path + '/config/routes.rb'):
+		if os.path.exists(path + '\\config\\routes.rb'):
 			result = True
 			break
 		else:
-			dirs = path.split('/')
+			dirs = path.split('\\')
 			dirs.pop()
-			path = '/'.join(dirs)
+			path = '\\'.join(dirs)
 
 	return extension in ['.rb', '.rake'] and result
